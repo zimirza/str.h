@@ -15,7 +15,7 @@ private:
     }
 };
 
-TEST(StringTest, Null) {
+TEST(StringTest, Nullptr) {
     String *str = string(nullptr);
 
     EXPECT_EQ(str, nullptr);
@@ -41,6 +41,12 @@ TEST(StringTest, EmptyString) {
     EXPECT_EQ(str->length, strlen(input));
 
     free_string(str);
+}
+
+TEST(StringTest, StringLengthNullptr) {
+    size_t length = string_length(nullptr);
+
+    EXPECT_EQ(length, 0);
 }
 
 TEST(StringTest, StringLength) {
