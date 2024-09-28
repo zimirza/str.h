@@ -14,15 +14,11 @@ FetchContent_MakeAvailable(googletest)
 
 if(CMAKE_GNU_COMPILER_ID)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Og -fsanitize=address -std=c89")
-endif(CMAKE_GNU_COMPILER_ID)
-
-if(CMAKE_GNU_COMPILER_ID)
+elseif(CMAKE_CLANG_COMPILER_ID)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Og -fsanitize=address -std=c89")
-endif(CMAKE_GNU_COMPILER_ID)
-
-if(CMAKE_MSVC_COMPILER_ID)
+elseif(CMAKE_MSVC_COMPILER_ID)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -std=c89")
-endif(CMAKE_MSVC_COMPILER_ID)
+endif()
 
 enable_testing()
 
