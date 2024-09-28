@@ -33,12 +33,38 @@ TEST(StringTest, CreateString) {
 }
 
 TEST(StringTest, EmptyString) {
-    const char* input = "";
+    const char *input = "";
     String *str = string(input);
 
     ASSERT_NE(str, nullptr);
     EXPECT_STREQ(str->data, input);
-    EXPECT_EQ(str->length, 0);
+    EXPECT_EQ(str->length, strlen(input));
+
+    free_string(str);
+}
+
+TEST(StringTest, StringLength) {
+    const char *input = "Hello, World!";
+    String *str = string(input);
+    size_t length = string_length(str);
+
+    ASSERT_NE(str, nullptr);
+    EXPECT_STREQ(str->data, input);
+    EXPECT_EQ(str->length, strlen(input));
+    EXPECT_EQ(length, strlen(input));
+
+    free_string(str);
+}
+
+TEST(StringTest, StringLengthEmptyString) {
+    const char *input = "";
+    String *str = string(input);
+    size_t length = string_length(str);
+
+    ASSERT_NE(str, nullptr);
+    EXPECT_STREQ(str->data, input);
+    EXPECT_EQ(str->length, strlen(input));
+    EXPECT_EQ(length, strlen(input));
 
     free_string(str);
 }
