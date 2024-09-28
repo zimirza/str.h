@@ -12,7 +12,17 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_compile_options(-Wall -Wextra -Werror -Og -fsanitize=address)
+if(CMAKE_GNU_COMPILER_ID)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Og -fsanitize=address -std=c++98")
+endif(CMAKE_GNU_COMPILER_ID)
+
+if(CMAKE_GNU_COMPILER_ID)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror -pedantic -Og -fsanitize=address -std=c++98")
+endif(CMAKE_GNU_COMPILER_ID)
+
+if(CMAKE_MSVC_COMPILER_ID)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic -Og -fsanitize=address -std=c++98")
+endif(CMAKE_MSVC_COMPILER_ID)
 
 enable_testing()
 
