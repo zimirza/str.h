@@ -30,6 +30,14 @@ String *string(const char *input) {
     return str;
 }
 
+size_t string_length(String *str) {
+    if (str == NULL) {
+        return 0;
+    }
+
+    return str->length;
+}
+
 void free_string(String *str) {
     free(str->data);
     free(str);
